@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql:///graphqltest?characterEncoding=utf-8&useSSL=false&useTimezone=true
+
+server:
+  port: 8081
+
+#GraphQL api调试工具
+graphiql:
+  enabled: true
+  endpoint: /graphql
+  mapping: /graphiql
+
+graphql:
+  servlet:
+    corsEnabled: true
+    enabled: true
+    mapping: /graphql
