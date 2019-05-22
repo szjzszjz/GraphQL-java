@@ -3,7 +3,8 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: root
-    url: jdbc:mysql:///graphqltest?characterEncoding=utf-8&useSSL=false&useTimezone=true
+#    url: jdbc:mysql:///graphqltest?characterEncoding=utf-8&useSSL=false&useTimezone=true
+    url: jdbc:mysql:///sell?characterEncoding=utf-8&useSSL=false&useTimezone=true
 
 server:
   port: 8081

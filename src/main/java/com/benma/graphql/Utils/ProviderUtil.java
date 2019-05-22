@@ -24,46 +24,35 @@ import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
  * author:szjz
  * date:2019/5/22
  */
-@Component
+//@Component
 public class ProviderUtil {
-
-    private GraphQL graphQL;
     private  String path;
     private  RuntimeWiring runtimeWiring;
 
-
-    public void initGraphQL(String path, RuntimeWiring runtimeWiring){
+    public GraphQL initGraphQL(String path, RuntimeWiring runtimeWiring){
         this.path = path;
         this.runtimeWiring= runtimeWiring;
+        GraphQL graphQL ;
         try {
-            init();
+            graphQL = init();
+            return graphQL;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
-
-    //   被@PostConstruct修饰的方法会在服务器加载Servlet的时候运行，并且只会被服务器调用一次，
-    //   类似于Serclet的inti()方法。被@PostConstruct修饰的方法会在构造函数之后，init()方法之前运行。
-   // @PostConstruct
-    public void init()throws IOException{
+    public GraphQL init()throws IOException{
         URL url = Resources.getResource(path);
         String sdl = Resources.toString(url, Charsets.UTF_8);
         GraphQLSchema graphQLSchema = buildSchema(sdl);
-        this.graphQL = GraphQL.newGraphQL(graphQLSchema).build();
+        GraphQL graphQL = GraphQL.newGraphQL(graphQLSchema).build();
+        return graphQL;
     }
 
     private GraphQLSchema buildSchema(String sdl) {
         TypeDefinitionRegistry typeRegistry = new SchemaParser().parse(sdl);
-//        RuntimeWiring runtimeWiring = buildWiring();
         SchemaGenerator schemaGenerator = new SchemaGenerator();
         return schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring);
-    }
-
-
-
-    @Bean
-    public GraphQL graphQL() {
-        return this.graphQL;
     }
 
 }

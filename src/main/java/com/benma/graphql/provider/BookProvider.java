@@ -23,41 +23,22 @@ import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
 @Component
 public class BookProvider {
 
-    private String path = "static/schema/schema-book.graphql";
-//     GraphQL graphQL;
+    private final String path = "static/schema/schema-book.graphql";
+    private GraphQL graphQL;
     @Autowired
     BookDataFetcher bookDataFetcher;
 
-//    public BookProvider(String path) {
-//       new ProviderUtil(path,buildWiring());
-//    }
+    //   被@PostConstruct修饰的方法会在服务器加载Servlet的时候运行，并且只会被服务器调用一次，
+    //   类似于Servlet的inti()方法。被@PostConstruct修饰的方法会在构造函数之后，init()方法之前运行。
     @PostConstruct
-    public void initGraphQL(){
-        new ProviderUtil().initGraphQL(path,buildWiring());
+    public void initGraphQL() {
+        this.graphQL = new ProviderUtil().initGraphQL(path, buildWiring());
     }
 
-
-//    @PostConstruct
-//    public void init()throws IOException {
-//        URL url = Resources.getResource(path);
-//        String sdl = Resources.toString(url, Charsets.UTF_8);
-//        GraphQLSchema graphQLSchema = buildSchema(sdl);
-//        this.graphQL = GraphQL.newGraphQL(graphQLSchema).build();
-//    }
-//
-//    private GraphQLSchema buildSchema(String sdl) {
-//        TypeDefinitionRegistry typeRegistry = new SchemaParser().parse(sdl);
-//        RuntimeWiring runtimeWiring = buildWiring();
-//        SchemaGenerator schemaGenerator = new SchemaGenerator();
-//        return schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring);
-//    }
-
-
-
-//    @Bean
-//    public GraphQL graphQL() {
-//        return graphQL;
-//    }
+    @Bean
+    public GraphQL graphQL() {
+        return graphQL;
+    }
 
     private RuntimeWiring buildWiring() {
         return RuntimeWiring.newRuntimeWiring()
@@ -83,6 +64,5 @@ public class BookProvider {
                         .dataFetcher("author", bookDataFetcher.author()))
                 .build();
     }
-
 
 }
