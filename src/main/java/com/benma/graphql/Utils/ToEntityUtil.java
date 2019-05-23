@@ -21,7 +21,7 @@ public class ToEntityUtil {
             fieldTypes[i] = fields[i].getGenericType().toString();
             fields[i].setAccessible(true);//获取访问私有变量的权限
             for (Object key : keySet) {
-                if (fieldNames[i].equals(key.toString())) {
+                if (fieldNames[i].equalsIgnoreCase(key.toString())) {
                     try {
                         fields[i].set(model, linkedHashMap.get(key));//给字段设置属性
                     } catch (IllegalAccessException e) {

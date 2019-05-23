@@ -1,47 +1,28 @@
 package com.benma.graphql.provider;
 
-import com.benma.graphql.Utils.ProviderUtil;
 import com.benma.graphql.dataFetcher.BookDataFetcher;
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
-import graphql.GraphQL;
-import graphql.schema.GraphQLSchema;
-import graphql.schema.idl.RuntimeWiring;
-import graphql.schema.idl.SchemaGenerator;
-import graphql.schema.idl.SchemaParser;
-import graphql.schema.idl.TypeDefinitionRegistry;
+import graphql.schema.idl.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.io.IOException;
-import java.net.URL;
 
 import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
 
 @Component
 public class BookProvider {
 
-    private final String path = "static/schema/schema-book.graphql";
-    private GraphQL graphQL;
     @Autowired
-    BookDataFetcher bookDataFetcher;
+//    public  BookDataFetcher bookDataFetcher;
+    public static final String schema_path = "static/schema/schema-book.graphql";
+
 
     //   被@PostConstruct修饰的方法会在服务器加载Servlet的时候运行，并且只会被服务器调用一次，
     //   类似于Servlet的inti()方法。被@PostConstruct修饰的方法会在构造函数之后，init()方法之前运行。
-    @PostConstruct
-    public void initGraphQL() {
-        this.graphQL = new ProviderUtil().initGraphQL(path, buildWiring());
-    }
 
-    @Bean
-    public GraphQL graphQL() {
-        return graphQL;
-    }
-
-    private RuntimeWiring buildWiring() {
-        return RuntimeWiring.newRuntimeWiring()
+    public static RuntimeWiring buildRuntimeWiring(BookDataFetcher bookDataFetcher) {
+        System.err.println("====="+bookDataFetcher);
+        return  RuntimeWiring.newRuntimeWiring()
                 .type(newTypeWiring("Mutation")
                         .dataFetcher("modifyBook", bookDataFetcher.modifyBook()))
                 .type(newTypeWiring("Mutation")
@@ -63,6 +44,7 @@ public class BookProvider {
                 .type(newTypeWiring("Book")
                         .dataFetcher("author", bookDataFetcher.author()))
                 .build();
+
     }
 
 }

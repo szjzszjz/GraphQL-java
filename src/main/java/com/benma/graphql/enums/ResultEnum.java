@@ -10,31 +10,17 @@ import lombok.Getter;
 @Getter
 public enum ResultEnum {
     /** shift + ctrl + u 大小写相互转换*/
-    PRODUCT_NOT_EXIST(0 ,"商品不存在"),
-    PRODUCT_STOCK_ERROR(1, "商品库存不足"),
-    PRODUCT_STATUS_ERROR(2, "商品状态异常"),
 
-    ORDER_NOT_EXIST(10,"订单不存在"),
-    ORDER_DETAIL_NOT_EXIST(11,"订单详情不存在"),
-    ORDER_STATUS_ERROR(12,"订单状态异常"),
-    ORDER_UPDATE_FAIL(13,"订单更新失败"),
-    ORDER_PAY_STATUS_ERROR(14,"订单支付状态异常"),
-    ORDER_CREATE_FAIL(15,"创建订单失败"),
-    ORDER_CANCEL_SUCCESS(16,"订单取消成功"),
-    ORDER_FINISH_SUCCESS(17,"订单完结成功"),
+    REGISTER_FAIL(120,"注册失败"),
+    REGISTER_SUCCESS(121,"注册成功"),
+    USER_EXIST(122,"用户已存在"),
 
-    PARAMETER_ERROR(110,"参数不正确"),
-    OWNER_IS_ERROR(111,"非当前登录用户"),
-    WX_MP_ERROR(112,"微信公众号方面出现错误"),
-    WXPAY_NOTIFY_MONEY_VERIFY_ERROR(113 ,"微信支付通知金额验证异常"),
-
-    CAR_IS_EMPTY(120,"购物车为空"),
-    RESULT_IS_EMPTY(121,"查询结果为空"),
-    INDEX_IS_REPEAT(122,"索引键重复"),
-
-    LOGIN_ERROR_USER_NOT_EXIST(130,"登录异常用户不存在"),
+    LOGIN_ERROR_USER_NOT_EXIST(130,"账号或密码错误"),
+    LOGIN_SUCCESS(133,"登录成功"),
     LOGOUT_SUCCESS(131,"退出成功"),
-    LOGOUTED(132,"已经退出")
+    LOGOUT(132,"已经退出")
+
+
     ;
 
     private Integer code;

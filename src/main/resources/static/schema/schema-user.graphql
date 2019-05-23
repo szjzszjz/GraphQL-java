@@ -1,6 +1,19 @@
-#type Query {
-#    #    登录
-#    login(username:String,password:String):String!
-#
-#
-#}
+input iUser {
+    username: String!
+    password: String!
+    gender: Gender
+    phone: String!
+}
+
+type User {
+    username: String!
+    password: String!
+    gender: Book
+    phone: String!
+}
+
+enum Gender {
+    UNKNOWN
+    MAN
+    WOMAN
+}
