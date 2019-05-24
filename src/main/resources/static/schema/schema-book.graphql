@@ -1,3 +1,31 @@
+
+extend type Query {
+    #    单条件查询，根据id查
+    bookById(id: ID): Book
+    #    多条件查询，根据ID 页码查
+    bookByPageCountAndId(id: ID, pageCount: Int): Book
+    #    查询所有 产品列表
+    books: [Book]
+    #    分页查询
+    booksPaging(page:Int ,pageSize:Int):[Book]
+    #    根据条件分页查询
+    booksPagingByPageCount(pageCount:Int, page:Int ,pageSize:Int):[Book]
+    #    模糊查询
+    booksLikeByName(name:String!):[Book]
+
+}
+
+
+#增 删 改
+extend type Mutation {
+    #    增加
+    createBook(book:iBook):Book @deprecated
+    #    修改
+    modifyBook(id:ID ,book:mBook):Book!
+    #    删除
+    deleteBook(id:ID):Boolean
+}
+
 input mBook{
     id: String
     name: String

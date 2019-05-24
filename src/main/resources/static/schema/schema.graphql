@@ -1,0 +1,13 @@
+#as super schema
+#三大根类型（root type: query mutation subscription）定义的时候本身或者继承其的子类必须有方法，否则就会报错
+schema {
+    query: Query
+    mutation: Mutation
+#    subscription: Subscription
+}
+
+type Query {}
+
+type Mutation {}
+
+#type Subscription {}

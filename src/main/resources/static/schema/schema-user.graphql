@@ -1,3 +1,18 @@
+extend type Query {
+    #    根据id查询
+    userById(id:ID):User!
+    #    根据性别查询
+    userByGender(gender:Gender!):[User]!
+    #    用户登录
+    login(username:String,password:String):String!
+}
+
+extend type Mutation {
+    #    注册平台用户
+    save(user: iUser!):String!
+}
+
+
 input iUser {
     username: String!
     password: String!
@@ -6,6 +21,7 @@ input iUser {
 }
 
 type User {
+    userId: Int
     username: String!
     password: String!
     gender: Book

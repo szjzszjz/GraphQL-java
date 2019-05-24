@@ -6,6 +6,8 @@ import com.benma.graphql.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * author:szjz
  * date:2019/5/23
@@ -31,5 +33,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public User findById(Integer userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
+
+    @Override
+    public List<User> userByGender(int gender) {
+        return userRepository.findByGender(gender);
     }
 }

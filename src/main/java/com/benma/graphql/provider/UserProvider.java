@@ -42,9 +42,10 @@ public class UserProvider{
 
     public static RuntimeWiring buildRuntimeWiring(UserDataFetcher userDataFetcher){
         return RuntimeWiring.newRuntimeWiring()
-                .type(newTypeWiring("Mutation").dataFetcher("save",userDataFetcher.save()))
                 .type(newTypeWiring("Query").dataFetcher("save",userDataFetcher.save()))
                 .type(newTypeWiring("Query").dataFetcher("login",userDataFetcher.login()))
+                .type(newTypeWiring("Query").dataFetcher("userById",userDataFetcher.userById()))
+                .type(newTypeWiring("Query").dataFetcher("userByGender",userDataFetcher.userByGender()))
                 .build();
 
     }

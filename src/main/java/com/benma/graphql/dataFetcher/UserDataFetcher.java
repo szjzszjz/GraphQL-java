@@ -2,9 +2,11 @@ package com.benma.graphql.dataFetcher;
 
 import com.benma.graphql.Utils.EnumUtil;
 import com.benma.graphql.Utils.ToEntityUtil;
+import com.benma.graphql.entity.Book;
 import com.benma.graphql.entity.User;
 import com.benma.graphql.enums.GenderEnum;
 import com.benma.graphql.enums.ResultEnum;
+import com.benma.graphql.result.ResultObject;
 import com.benma.graphql.service.UserService;
 import graphql.schema.DataFetcher;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * author:szjz
@@ -42,12 +45,12 @@ public class UserDataFetcher {
 
                 User responseUser = userService.save(user);
                 if (responseUser == null) {
-                    log.error("【用户注册】 {}",ResultEnum.REGISTER_FAIL.getMessage());
+                    log.error("【用户注册】 {}", ResultEnum.REGISTER_FAIL.getMessage());
                     return ResultEnum.REGISTER_FAIL.getMessage();
                 }
                 return ResultEnum.REGISTER_SUCCESS.getMessage();
             }
-            log.error("【用户注册】 {}",ResultEnum.USER_EXIST.getMessage());
+            log.error("【用户注册】 {}", ResultEnum.USER_EXIST.getMessage());
             return ResultEnum.USER_EXIST.getMessage();
         };
     }
@@ -63,11 +66,34 @@ public class UserDataFetcher {
             User user = userService.findByUsernameAndPassword(username, password);
             if (user == null) {
                 log.error("【用户登录】 username={},password={},{} ", username, password, ResultEnum.LOGIN_ERROR_USER_NOT_EXIST.getMessage());
-                return  ResultEnum.LOGIN_ERROR_USER_NOT_EXIST.getMessage();
+                return ResultEnum.LOGIN_ERROR_USER_NOT_EXIST.getMessage();
             }
             return ResultEnum.LOGIN_SUCCESS.getMessage();
         };
     }
 
+
     /** 平台用户退出 */
+
+    /**
+     * 根据id查询
+     */
+    public DataFetcher userById() {
+        return dataFetchingEnvironment -> {
+            String  userId = dataFetchingEnvironment.getArgument("id");
+            User user = userService.findById(Integer.valueOf(userId));
+            return user;
+        };
+    }
+    /**
+     * 根据性别查询
+     */
+    public DataFetcher userByGender() {
+        return dataFetchingEnvironment -> {
+            String gender = dataFetchingEnvironment.getArgument("gender");
+            GenderEnum genderEnum = EnumUtil.getByMsg(gender, GenderEnum.class);
+            List userList = userService.userByGender(genderEnum.getCode().intValue());
+            return userList;
+        };
+    }
 }

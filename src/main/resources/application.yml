@@ -4,7 +4,6 @@ spring:
     username: root
     password: root
     url: jdbc:mysql:///graphqltest?characterEncoding=utf-8&useSSL=false&useTimezone=true
-#    url: jdbc:mysql:///sell?characterEncoding=utf-8&useSSL=false&useTimezone=true
 
   jpa:
     hibernate:
@@ -14,9 +13,9 @@ spring:
 #  main:
 #    allow-bean-definition-overriding: true
 
-  redis:
-    host: 192.168.1.151
-    port: 6379
+#  redis:
+#    host: 192.168.1.151
+#    port: 6379
 
 server:
   port: 8081
