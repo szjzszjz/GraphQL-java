@@ -24,7 +24,7 @@ type User {
     userId: Int
     username: String!
     password: String!
-    gender: Book
+    gender: Gender
     phone: String!
 }
 

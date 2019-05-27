@@ -54,11 +54,11 @@
             <version>4.0.0</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.graphql-java</groupId>-->
-<!--            <artifactId>graphql-java-spring-boot-starter-webmvc</artifactId>-->
-<!--            <version>1.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-java-spring-boot-starter-webmvc</artifactId>
+            <version>1.0</version>
+        </dependency>
         <dependency>
             <groupId>com.graphql-java</groupId>
             <artifactId>graphql-java</artifactId>
@@ -74,12 +74,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>com.google.code.gson</groupId>-->
-<!--            <artifactId>gson</artifactId>-->
-<!--        </dependency>-->
-
 
         <dependency>
             <groupId>com.graphql-java-kickstart</groupId>

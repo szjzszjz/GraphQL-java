@@ -14,13 +14,13 @@ import java.util.List;
 /**
  * author:szjz
  * date:2019/5/23
- * schema 类型注册工具
+ * schema 类型注册工具 主要是用来整合各个schema文件路径
  */
 public class RegistryUtil {
 
-    public static List<String> pathList = new ArrayList<>();
+//    public static List<String> pathList = new ArrayList<>();
 
-    public static TypeDefinitionRegistry registry() throws IOException {
+    public static TypeDefinitionRegistry registry(List<String > pathList) throws IOException {
         SchemaParser schemaParser = new SchemaParser();
         TypeDefinitionRegistry typeRegistry = new TypeDefinitionRegistry();
         for (String schema_path : pathList) {

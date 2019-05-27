@@ -20,16 +20,23 @@ public class BookProvider {
 
     public static RuntimeWiring buildRuntimeWiring(BookDataFetcher bookDataFetcher) {
         return RuntimeWiring.newRuntimeWiring()
-                .type(newTypeWiring("Query").dataFetcher("books", bookDataFetcher.books()))
-                .type(newTypeWiring("Query").dataFetcher("bookById", bookDataFetcher.bookById()))
-                .type(newTypeWiring("Query").dataFetcher("bookByPageCountAndId", bookDataFetcher.bookByPageCountAndId()))
-                .type(newTypeWiring("Query").dataFetcher("booksPaging", bookDataFetcher.booksPaging()))
-                .type(newTypeWiring("Query").dataFetcher("booksPagingByPageCount", bookDataFetcher.booksPagingByPageCount()))
-                .type(newTypeWiring("Query").dataFetcher("booksLikeByName", bookDataFetcher.booksLikeByName()))
-                .type(newTypeWiring("Mutation").dataFetcher("modifyBook", bookDataFetcher.modifyBook()))
-                .type(newTypeWiring("Mutation").dataFetcher("createBook", bookDataFetcher.createBook()))
-                .type(newTypeWiring("Mutation").dataFetcher("deleteBook", bookDataFetcher.deleteBook()))
-                .type(newTypeWiring("Book").dataFetcher("author", bookDataFetcher.author()))
+                //查询
+                .type(newTypeWiring("Query")
+                        .dataFetcher("books", bookDataFetcher.books())
+                        .dataFetcher("bookById", bookDataFetcher.bookById())
+                        .dataFetcher("bookByPageCountAndId", bookDataFetcher.bookByPageCountAndId())
+                        .dataFetcher("booksPaging", bookDataFetcher.booksPaging())
+                        .dataFetcher("booksPagingByPageCount", bookDataFetcher.booksPagingByPageCount())
+                        .dataFetcher("booksLikeByName", bookDataFetcher.booksLikeByName()))
+
+                //更新
+                .type(newTypeWiring("Mutation")
+                        .dataFetcher("modifyBook", bookDataFetcher.modifyBook())
+                        .dataFetcher("createBook", bookDataFetcher.createBook())
+                        .dataFetcher("deleteBook", bookDataFetcher.deleteBook()))
+
+                .type(newTypeWiring("Book")
+                        .dataFetcher("author", bookDataFetcher.author()))
                 .build();
     }
 
