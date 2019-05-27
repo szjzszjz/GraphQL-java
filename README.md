@@ -1,17 +1,44 @@
-# GraphQL-java
-## 该demo主要是Java对GraphQL的实现，利用SDL进行开发，个人感觉SDL比纯Java代码实现GraphQL会更简洁明了，不会出现代码冗余的情况。本demo是基于https://www.graphql-java.com/tutorials/getting-started-with-spring-boot/ 进行的扩展延伸
+# GraphQL-java-SDL
+#### 该demo主要是Java对GraphQL的实现，是在项目开发之前对GraphQL的一次探索，基于大项目进行构建。利用SDL进行开发，个人感觉SDL比纯Java代码实现GraphQL会更简洁明了，不会出现代码冗余的情况。本demo是基于[这个案例](https://www.graphql-java.com/tutorials/getting-started-with-spring-boot/) 进行的扩展延伸,刚刚开始接触GraphQL-java的同学建议先熟悉上面的案例。
 ### 以下是一些学习graphql的网站  
-raphQL桌面调试工具
-https://github.com/prisma/graphql-playground/releases/tag/v1.8.10  
-GraphQL学习文档
-https://www.graphql-java.com/documentation  
-GraphQL中文学习官网
-https://graphql.cn/learn/schema/  
-GraphQL英文学习官网
-https://graphql.org/learn/schema/  
-schema语法规范
-https://developer.github.com/v4/  
-### 数据库表格及内容  
+- [GraphQL桌面调试工具](https://github.com/prisma/graphql-playground/releases/tag/v1.8.10)  
+- [GraphQL学习文档](https://www.graphql-java.com/documentation)  
+- [GraphQL中文学习官网](https://graphql.cn/learn/schema/)  
+- [GraphQL英文学习官网](https://graphql.org/learn/schema/)  
+- [schema语法规范](https://developer.github.com/v4/)  
+
+### 如果遇到以下问题可参考这个demo  
+- 如何建立多个schema文件  
+- 如何对多个schema文件进行合并  
+- 如何在分模块开发的情况下生成全局唯一的RuntimeWiring  
+
+
+### 用到的依赖
+```
+        <!--GraphQL-->
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-spring-boot-starter</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphiql-spring-boot-starter</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-java-spring-boot-starter-webmvc</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-java</artifactId>
+            <version>11.0</version>
+        </dependency>
+```
+
+### 测试用的数据库表格及内容  
 ```
 /*
 Navicat MySQL Data Transfer
