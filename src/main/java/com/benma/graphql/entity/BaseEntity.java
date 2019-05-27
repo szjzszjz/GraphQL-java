@@ -16,7 +16,7 @@ public class BaseEntity implements Serializable{
     @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP",insertable = false,updatable = false)
     private Date createTime;
 
-    //跟新时间以当前时间为准 不可插入 默认可更新
+    //更新时间以当前时间为准 不可插入 默认可更新
     @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP",insertable = false)
     private Date updateTime;
 }

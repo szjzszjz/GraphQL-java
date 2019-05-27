@@ -1,19 +1,9 @@
 package com.benma.graphql.provider;
 
-import com.benma.graphql.Utils.JsonUtil;
 import com.benma.graphql.dataFetcher.BookDataFetcher;
-import graphql.schema.DataFetcher;
-import graphql.schema.DataFetcherFactory;
-import graphql.schema.GraphQLScalarType;
-import graphql.schema.TypeResolver;
 import graphql.schema.idl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
 

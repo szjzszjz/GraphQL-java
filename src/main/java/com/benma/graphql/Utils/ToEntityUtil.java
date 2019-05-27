@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Set;
 
 /**
- * map转实体类
+ * map 转实体类
  */
 public class ToEntityUtil {
 

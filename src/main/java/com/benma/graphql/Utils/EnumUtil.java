@@ -29,7 +29,7 @@ public class EnumUtil {
     }
 
     /**
-     * 通过枚举类型 获取枚举类型
+     * 通过枚举类型 获取枚举类型 （主要用于schema中的枚举类和项目中的枚举类之间的映射）
      * @param ele
      * @param enumClass
      * @param <T>
