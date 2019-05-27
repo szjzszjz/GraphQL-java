@@ -3,7 +3,6 @@ package com.benma.graphql.dataFetcher;
 import com.benma.graphql.Utils.ToEntityUtil;
 import com.benma.graphql.entity.Author;
 import com.benma.graphql.entity.Book;
-import com.benma.graphql.result.ResultObject;
 import com.benma.graphql.service.AuthorService;
 import com.benma.graphql.service.BookService;
 import graphql.schema.DataFetcher;
@@ -53,8 +52,6 @@ public class BookDataFetcher {
             Book book = bookService.findById(id);
             Book booked = (Book) ToEntityUtil.entity(book, hashMap);
             bookService.create(booked);
-            ResultObject success = ResultObject.success(booked);
-            System.err.println(success);
             return book;
         };
     }
@@ -121,8 +118,6 @@ public class BookDataFetcher {
         return dataFetchingEnvironment -> {
             String bookId = dataFetchingEnvironment.getArgument("id");
             Book book = bookService.findById(bookId);
-            ResultObject success = ResultObject.success(book);
-            System.err.println(success);
             return book;
         };
     }

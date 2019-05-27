@@ -2,15 +2,12 @@ package com.benma.graphql.dataFetcher;
 
 import com.benma.graphql.Utils.EnumUtil;
 import com.benma.graphql.Utils.ToEntityUtil;
-import com.benma.graphql.entity.Book;
 import com.benma.graphql.entity.User;
 import com.benma.graphql.enums.GenderEnum;
 import com.benma.graphql.enums.ResultEnum;
-import com.benma.graphql.result.ResultObject;
 import com.benma.graphql.service.UserService;
 import graphql.schema.DataFetcher;
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -80,11 +77,12 @@ public class UserDataFetcher {
      */
     public DataFetcher userById() {
         return dataFetchingEnvironment -> {
-            String  userId = dataFetchingEnvironment.getArgument("id");
+            String userId = dataFetchingEnvironment.getArgument("id");
             User user = userService.findById(Integer.valueOf(userId));
             return user;
         };
     }
+
     /**
      * 根据性别查询
      */
