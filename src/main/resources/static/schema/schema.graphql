@@ -10,4 +10,12 @@ type Query {}
 
 type Mutation {}
 
+type ResultObj {
+    code: Int
+    message: String
+    data: String
+}
+
+
+
 #type Subscription {}

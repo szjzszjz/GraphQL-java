@@ -4,12 +4,18 @@ extend type Query {
     #    根据性别查询
     userByGender(gender:Gender!):[User]!
     #    用户登录
-    login(username:String,password:String):String!
+    login(username:String!,password:String!):LoginMsg!
 }
 
 extend type Mutation {
     #    注册平台用户
     save(user: iUser!):String!
+}
+
+#登录之后返回的信息
+type LoginMsg {
+    message:String
+    token:String
 }
 
 
@@ -23,7 +29,7 @@ input iUser {
 type User {
     userId: Int
     username: String!
-    password: String!
+    password: String! @deprecated #字段被隐藏，某种程度不被外界可查，仍然不安全
     gender: Gender
     phone: String!
 }

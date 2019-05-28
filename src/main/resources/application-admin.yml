@@ -1,0 +1,45 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql:///graphqltest?characterEncoding=utf-8&useSSL=false&useTimezone=true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+
+  redis:
+    host: 192.168.1.141
+    port: 6379
+    password: 123456
+
+
+
+
+#  main:
+#    allow-bean-definition-overriding: true
+
+#  redis:
+#    host: 192.168.1.151
+#    port: 6379
+
+server:
+  port: 8082
+  servlet:
+    context-path: /
+
+
+#GraphQL api 浏览器端调试工具
+graphiql:
+  enabled: true
+  endpoint: /graphql
+  mapping: /test
+
+#GraphQL api PC桌面调试工具
+#graphql:
+#  servlet:
+#    corsEnabled: true
+#    enabled: true
+#    mapping: /graphql

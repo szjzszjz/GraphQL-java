@@ -1,19 +1,20 @@
 # GraphQL-java-SDL
-#### 该demo主要是Java对GraphQL的实现，是在项目开发之前对GraphQL的一次探索，基于大项目进行构建。利用SDL进行开发，个人感觉SDL比纯Java代码实现GraphQL会更简洁明了，不会出现代码冗余的情况。本demo是基于[这个案例](https://www.graphql-java.com/tutorials/getting-started-with-spring-boot/) 进行的扩展延伸,刚刚开始接触GraphQL-java的同学建议先熟悉上面的案例。
+#### 该demo主要是Java对GraphQL的实现，是在项目开发之前对GraphQL的一次探索，基于大项目进行构建。利用SDL（IDL）进行schema文件定义，个人感觉SDL比纯Java代码实现GraphQL会更简洁明了，不会出现代码冗余的情况。本demo是基于[这个案例](https://www.graphql-java.com/tutorials/getting-started-with-spring-boot/) 进行的扩展延伸,刚刚开始接触GraphQL-java的同学建议先熟悉上面的案例。
 ### 以下是一些学习graphql的网站  
 - [GraphQL桌面调试工具](https://github.com/prisma/graphql-playground/releases/tag/v1.8.10)  
 - [GraphQL学习文档](https://www.graphql-java.com/documentation)  
 - [GraphQL中文学习官网](https://graphql.cn/learn/schema/)  
 - [GraphQL英文学习官网](https://graphql.org/learn/schema/)  
 - [schema语法规范](https://developer.github.com/v4/)  
+- [graphql-schema-language-cheat-sheet(SDL基本语法)](https://github.com/sogko/graphql-schema-language-cheat-sheet)
 
 ### 如果遇到以下问题可参考这个demo  
 - 如何建立多个schema文件  
 - 如何对多个schema文件进行合并  
 - 如何在分模块开发的情况下生成全局唯一的RuntimeWiring  
-
-
-### 用到的依赖
+### 环境要求
+- JDK1.8 + 
+### 有关GraphQL用到的依赖
 ```
         <!--GraphQL-->
         <dependency>
