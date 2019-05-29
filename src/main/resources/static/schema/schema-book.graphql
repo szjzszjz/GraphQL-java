@@ -5,7 +5,7 @@ extend type Query {
     #    多条件查询，根据ID 页码查
     bookByPageCountAndId(id: ID, pageCount: Int): Book
     #    查询所有 产品列表
-    books: [Book]
+    books: [Book] @auth(ignore: true)
     #    分页查询
     booksPaging(page:Int ,pageSize:Int):[Book]
     #    根据条件分页查询
@@ -19,7 +19,7 @@ extend type Query {
 #增 删 改
 extend type Mutation {
     #    增加
-    createBook(book:iBook):Book @deprecated
+    createBook(book:iBook):Book @deprecated #逻辑上废弃该方法，依然可以执行
     #    修改
     modifyBook(id:ID ,book:mBook):Book!
     #    删除

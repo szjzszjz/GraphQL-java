@@ -34,8 +34,3 @@ type User {
     phone: String!
 }
 
-enum Gender {
-    UNKNOWN
-    MAN
-    WOMAN
-}

@@ -81,6 +81,9 @@ public class UserDataFetcher {
             Integer expire = CookieConstant.EXPIRE;//过期时间
             //设置浏览器cookie
             CookieUtil.set(HttpUtil.response(), CookieConstant.TOKEN, token, expire);
+            // TODO: 2019/5/29  通过session存储cookie
+
+
             //redis中缓存用户信息和cookie
             redisTemplate.opsForValue().set(
                     String.format(RedisConstant.TOKEN_PREFIX, token),//key

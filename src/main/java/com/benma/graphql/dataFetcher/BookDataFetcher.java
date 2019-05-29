@@ -5,7 +5,7 @@ import com.benma.graphql.entity.Author;
 import com.benma.graphql.entity.Book;
 import com.benma.graphql.service.AuthorService;
 import com.benma.graphql.service.BookService;
-import graphql.schema.DataFetcher;
+import graphql.schema.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
@@ -22,9 +22,11 @@ public class BookDataFetcher {
     private AuthorService authorService;
 
 
-    /** 添加 */
-    public DataFetcher createBook(){
-        return dataFetchingEnv ->{
+    /**
+     * 添加
+     */
+    public DataFetcher createBook() {
+        return dataFetchingEnv -> {
             LinkedHashMap bookMap = dataFetchingEnv.getArgument("book");
             Book book = (Book) ToEntityUtil.entity(new Book(), bookMap);
             bookService.create(book);
@@ -44,11 +46,13 @@ public class BookDataFetcher {
     }
 
 
-    /** 修改 */
-    public DataFetcher modifyBook(){
+    /**
+     * 修改
+     */
+    public DataFetcher modifyBook() {
         return dataFetcherEvn -> {
-            String  id =  dataFetcherEvn.getArgument("id");
-            LinkedHashMap hashMap  = dataFetcherEvn.getArgument("book");
+            String id = dataFetcherEvn.getArgument("id");
+            LinkedHashMap hashMap = dataFetcherEvn.getArgument("book");
             Book book = bookService.findById(id);
             Book booked = (Book) ToEntityUtil.entity(book, hashMap);
             bookService.create(booked);
@@ -60,15 +64,16 @@ public class BookDataFetcher {
      * 查询所有
      */
     public DataFetcher books() {
-        return dataFetchingEnvironment -> {
+        return evn -> {
             List<Book> bookList = bookService.findAll();
             return bookList;
         };
-
     }
 
-    /** 分页查询 */
-    public DataFetcher booksPaging(){
+    /**
+     * 分页查询
+     */
+    public DataFetcher booksPaging() {
         return dataFetchingEvn -> {
             Integer page = dataFetchingEvn.getArgument("page");
             Integer pageSize = dataFetchingEvn.getArgument("pageSize");
@@ -77,22 +82,26 @@ public class BookDataFetcher {
         };
     }
 
-    /** 根据条件分页查询 */
-    public DataFetcher booksPagingByPageCount(){
+    /**
+     * 根据条件分页查询
+     */
+    public DataFetcher booksPagingByPageCount() {
         return dataFetchingEnvironment -> {
             Integer pageCount = dataFetchingEnvironment.getArgument("pageCount");
             Integer page = dataFetchingEnvironment.getArgument("page");
             Integer pageSize = dataFetchingEnvironment.getArgument("pageSize");
-            Page<Book> bookPage = bookService.booksPagingByPageCount(page, pageSize,pageCount);
+            Page<Book> bookPage = bookService.booksPagingByPageCount(page, pageSize, pageCount);
             return bookPage.getContent();
         };
     }
 
 
-    /** 根据条件模糊查询 */
-    public DataFetcher booksLikeByName(){
+    /**
+     * 根据条件模糊查询
+     */
+    public DataFetcher booksLikeByName() {
         return dataFetchingEnvironment -> {
-            String  name = dataFetchingEnvironment.getArgument("name");
+            String name = dataFetchingEnvironment.getArgument("name");
             List<Book> bookList = bookService.booksLikeByName(name);
             return bookList;
         };

@@ -18,8 +18,7 @@ public class HttpUtil {
 
 
     public static HttpServletResponse response(){
-        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletResponse response = requestAttributes.getResponse();
+        HttpServletResponse response =((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
         return response;
     }
 

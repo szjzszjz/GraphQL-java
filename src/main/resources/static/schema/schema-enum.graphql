@@ -1,0 +1,7 @@
+
+#性别分类
+enum Gender {
+    MAN     #男
+    WOMAN   #女
+    UNKNOWN #未知
+}

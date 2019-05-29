@@ -57,6 +57,7 @@ public class GraphQLConfig {
         //合并schema文件路径
         List<String> pathList = new ArrayList<>();
         pathList.add("static/schema/schema.graphql");
+        pathList.add("static/schema/schema-enum.graphql");
         pathList.add(bookProvider.schema_path);
         pathList.add(userProvider.schema_path);
         TypeDefinitionRegistry registry = null;

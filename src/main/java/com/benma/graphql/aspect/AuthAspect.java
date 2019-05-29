@@ -26,27 +26,27 @@ import javax.servlet.http.Cookie;
 @Aspect
 @Slf4j
 @Component
-public class AuthorizeAspect {
+public class AuthAspect {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
 
     //设置切点 对某个类下的某些方法进行拦截
-    //对service层进行拦截
-    @Pointcut("execution(public * com.benma.graphql.service.Impl.UserServiceImpl.*(..))"+
+    @Pointcut(
+            //对service层进行拦截
+            /*"|| execution(public * com.benma.graphql.service.Impl.UserServiceImpl.*(..))"+
             "&& ! execution(public * com.benma.graphql.service.Impl.UserServiceImpl.save(..))"+
             "&& ! execution(public * com.benma.graphql.service.Impl.UserServiceImpl.findByUsernameAndPassword(..))"+
-            "|| execution(public * com.benma.graphql.service.Impl.BookServiceImpl.*(..))"
+            "|| execution(public * com.benma.graphql.service.Impl.BookServiceImpl.*(..))"*/
 
             //利用AOP,无法实现对graphQL *DataFetcher层的拦截，只能对service层进行拦截，对service层的拦截虽然更细粒度，
             // 但是不利于后期整合权限的管理，降低业务逻辑的灵活度，所以利用AOP对GraphQL认证授权不是最佳的处理方案
-            /* "execution(public * com.benma.graphql.dataFetcher.BookDataFetcher.*(..))" +
-             "|| execution(public * com.benma.graphql.dataFetcher.UserDataFetcher.*(..))"
-             + "&& ! execution(public * com.benma.graphql.dataFetcher.UserDataFetcher.login())" +
-             "&& ! execution(public * com.benma.graphql.dataFetcher.UserDataFetcher.save())"*/
+            /* "execution(public * com.benma.graphql.dataFetcher.BookDataFetcher.*(..))"+
+           "|| execution(public * com.benma.graphql.dataFetcher.UserDataFetcher.*(..))"
+           + "&& ! execution(public * com.benma.graphql.dataFetcher.UserDataFetcher.login())" +
+           "&& ! execution(public * com.benma.graphql.dataFetcher.UserDataFetcher.save())"*/
     )
-    public void verify() {
-    }
+    public void verify() {}
 
     @Before("verify()")
     public void doVerify() {
@@ -55,7 +55,7 @@ public class AuthorizeAspect {
         if (cookie == null) {
             log.error("【用户认证登录】 {}", ResultEnum.AUTHORIZE_FAIL.getMessage());
             throw new AuthorizeException(ResultEnum.AUTHORIZE_FAIL);
-        }else {
+        } else {
 
             String format = String.format(RedisConstant.TOKEN_PREFIX, cookie.getValue());
             String userInfo = redisTemplate.opsForValue().get(format);
